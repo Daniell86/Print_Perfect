@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional online print adjuster tool to optimize images for perfect printing. Adjust DPI, dimensions, color mode, and apply filters for high-quality prints.">
+    <meta name="keywords" content="print adjuster, image optimization, DPI converter, print quality, photo printing, image resize">
+    <meta name="author" content="PrintPerfect">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="PrintPerfect - Online Print Adjuster Tool">
+    <meta property="og:description" content="Optimize your images for perfect printing with our advanced print adjuster tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://printperfect.com">
+    <meta property="og:image" content="https://printperfect.com/images/og-image.jpg">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PrintPerfect - Online Print Adjuster Tool">
+    <meta name="twitter:description" content="Optimize your images for perfect printing with our advanced print adjuster tool.">
+    
+    <title>PrintPerfect | Professional Online Print Adjuster Tool - Optimize Images for Printing</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-print logo-icon"></i>
+                    <span>PrintPerfect</span>
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="a4-layout.html">A4 Layout</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Optimize Your Images for Perfect Printing</h1>
+                <p>Our advanced print adjuster tool helps you prepare images for professional-quality prints with precise control over dimensions, resolution, color mode, and formatting. Get perfect prints every time!</p>
+                <div class="hero-buttons">
+                    <a href="#tool" class="btn btn-accent btn-lg">
+                        <i class="fas fa-sliders-h"></i>
+                        Single Image Tool
+                    </a>
+                    <a href="a4-layout.html" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-th-large"></i>
+                        A4 Multi-Image Layout
+                    </a>
+                    <a href="#features" class="btn btn-outline btn-lg">
+                        <i class="fas fa-play-circle"></i>
+                        How It Works
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Section -->
+    <section id="tool">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Advanced Print Adjuster Tool</h2>
+                <p>Upload your image and adjust settings for optimal print quality with real-time preview</p>
+            </div>
+            
+            <div class="tool-container fade-in">
+                <!-- Tool Header -->
+                <div class="tool-header">
+                    <h2 class="tool-title">
+                        <i class="fas fa-image"></i>
+                        Image Adjuster
+                    </h2>
+                    <div class="tool-controls">
+                        <button class="btn btn-sm" id="uploadBtn">
+                            <i class="fas fa-upload"></i>
+                            Upload Image
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="cropBtn" disabled>
+                            <i class="fas fa-crop"></i>
+                            Crop
+                        </button>
+                        <button class="btn btn-accent btn-sm" id="processBtn" disabled>
+                            <i class="fas fa-magic"></i>
+                            Process
+                        </button>
+                        <button class="btn btn-accent btn-sm" id="printBtn" disabled>
+                            <i class="fas fa-print"></i>
+                            Print
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="downloadBtn" disabled>
+                            <i class="fas fa-download"></i>
+                            Download
+                        </button>
+                        <button class="btn btn-outline btn-sm" id="resetBtn" disabled>
+                            <i class="fas fa-redo"></i>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Tool Body -->
+                <div class="tool-body">
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <p class="upload-text">
+                            <strong>Drag & Drop</strong> your image here<br>
+                            or click to browse
+                        </p>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;" multiple>
+                        <button class="btn btn-outline" id="browseBtn">
+                            <i class="fas fa-folder-open"></i>
+                            Browse Files
+                        </button>
+                        <p class="file-formats">Supported: JPG, PNG, TIFF, BMP, WebP, AVIF</p>
+                    </div>
+                    
+                    <!-- Preview Container -->
+                    <div class="preview-container">
+                        <!-- Preview Controls -->
+                        <div class="preview-controls">
+                            <div class="preview-zoom-controls">
+                                <button id="zoomOutBtn" title="Zoom Out" disabled>
+                                    <i class="fas fa-search-minus"></i>
+                                </button>
+                                <span class="zoom-level" id="zoomLevel">100%</span>
+                                <button id="zoomInBtn" title="Zoom In" disabled>
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button id="fitScreenBtn" title="Fit to Screen" disabled>
+                                    <i class="fas fa-compress"></i>
+                                </button>
+                                <button id="actualSizeBtn" title="Actual Size" disabled>
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="preview-transform-controls">
+                                <button id="rotateLeftBtn" title="Rotate Left 90°" disabled>
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                                <button id="rotateRightBtn" title="Rotate Right 90°" disabled>
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                                <button id="flipHBtn" title="Flip Horizontal" disabled>
+                                    <i class="fas fa-arrows-alt-h"></i>
+                                </button>
+                                <button id="flipVBtn" title="Flip Vertical" disabled>
+                                    <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                                <button id="gridToggleBtn" title="Toggle Grid" disabled>
+                                    <i class="fas fa-th"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Preview Area -->
+                        <div class="preview-area" id="previewArea">
+                            <div class="preview-placeholder" id="previewPlaceholder">
+                                <i class="fas fa-image"></i>
+                                <p>Your image will appear here</p>
+                            </div>
+                            
+                            <div class="preview-image-wrapper" id="previewImageWrapper">
+                                <canvas id="previewCanvas"></canvas>
+                            </div>
+                            
+                            <!-- Grid Overlay -->
+                            <div class="grid-overlay" id="gridOverlay">
+                                <svg width="100%" height="100%">
+                                    <defs>
+                                        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                                            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(99, 102, 241, 0.3)" stroke-width="1"/>
+                                        </pattern>
+                                    </defs>
+                                    <rect width="100%" height="100%" fill="url(#grid)" />
+                                </svg>
+                            </div>
+                            
+                            <!-- Crop Tool -->
+                            <div class="crop-tool" id="cropTool">
+                                <div class="crop-overlay"></div>
+                                <div class="crop-area" id="cropArea">
+                                    <div class="crop-handle handle-nw"></div>
+                                    <div class="crop-handle handle-n"></div>
+                                    <div class="crop-handle handle-ne"></div>
+                                    <div class="crop-handle handle-e"></div>
+                                    <div class="crop-handle handle-se"></div>
+                                    <div class="crop-handle handle-s"></div>
+                                    <div class="crop-handle handle-sw"></div>
+                                    <div class="crop-handle handle-w"></div>
+                                    
+                                    <svg class="crop-guidelines" width="100%" height="100%">
+                                        <line x1="33.33%" y1="0" x2="33.33%" y2="100%"></line>
+                                        <line x1="66.66%" y1="0" x2="66.66%" y2="100%"></line>
+                                        <line x1="0" y1="33.33%" x2="100%" y2="33.33%"></line>
+                                        <line x1="0" y1="66.66%" x2="100%" y2="66.66%"></line>
+                                    </svg>
+                                    
+                                    <div class="crop-dimensions" id="cropDimensions">0 × 0 px</div>
+                                </div>
+                                
+                                <div class="crop-controls">
+                                    <button class="btn btn-sm" id="applyCropBtn">
+                                        <i class="fas fa-check"></i>
+                                        Apply Crop
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" id="cancelCropBtn">
+                                        <i class="fas fa-times"></i>
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Panel -->
+                <div class="settings-panel">
+                    <!-- Settings Tabs -->
+                    <div class="settings-tabs">
+                        <button class="tab-btn active" data-tab="basic">
+                            <i class="fas fa-sliders-h"></i> Basic
+                        </button>
+                        <button class="tab-btn" data-tab="quality">
+                            <i class="fas fa-star"></i> Quality
+                        </button>
+                        <button class="tab-btn" data-tab="adjustments">
+                            <i class="fas fa-adjust"></i> Adjustments
+                        </button>
+                        <button class="tab-btn" data-tab="effects">
+                            <i class="fas fa-magic"></i> Effects
+                        </button>
+                        <button class="tab-btn" data-tab="advanced">
+                            <i class="fas fa-cog"></i> Advanced
+                        </button>
+                    </div>
+                    
+                    <!-- Tab: Basic Settings -->
+                    <div class="tab-content active" id="tab-basic">
+                        <div class="settings-grid">
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-file-alt"></i> Paper Size</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="paperSize">
+                                        <option value="a4">A4 (210×297mm)</option>
+                                        <option value="a3">A3 (297×420mm)</option>
+                                        <option value="a5">A5 (148×210mm)</option>
+                                        <option value="letter">US Letter (8.5×11in)</option>
+                                        <option value="legal">US Legal (8.5×14in)</option>
+                                        <option value="4x6">4×6 inches</option>
+                                        <option value="5x7">5×7 inches</option>
+                                        <option value="8x10">8×10 inches</option>
+                                        <option value="custom">Custom Size</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-compass"></i> Orientation</span>
+                                </label>
+                                <div class="btn-group-inline">
+                                    <button class="btn btn-sm active" id="portraitBtn" data-orientation="portrait">
+                                        <i class="fas fa-arrows-alt-v"></i>
+                                        Portrait
+                                    </button>
+                                    <button class="btn btn-sm" id="landscapeBtn" data-orientation="landscape">
+                                        <i class="fas fa-arrows-alt-h"></i>
+                                        Landscape
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-ruler"></i> Unit</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="unitSelect">
+                                        <option value="in">Inches (in)</option>
+                                        <option value="cm">Centimeters (cm)</option>
+                                        <option value="mm">Millimeters (mm)</option>
+                                        <option value="px">Pixels (px)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-expand-arrows-alt"></i> Custom Dimensions</span>
+                                    <span class="setting-value" id="dimensionValue">-</span>
+                                </label>
+                                <div class="dimension-inputs">
+                                    <input type="number" id="widthInput" placeholder="Width" step="0.01" min="0">
+                                    <span class="dimension-separator">×</span>
+                                    <input type="number" id="heightInput" placeholder="Height" step="0.01" min="0">
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-cog"></i> Options</span>
+                                </label>
+                                <div style="display: flex; flex-direction: column; gap: 12px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="maintainAspect" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Maintain Aspect Ratio</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="scaleToFit" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Scale to Fit Page</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="centerOnPage" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Center on Page</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab: Quality Settings -->
+                    <div class="tab-content" id="tab-quality">
+                        <div class="settings-grid">
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-chart-line"></i> DPI / Resolution</span>
+                                    <span class="setting-value" id="dpiValue">300 DPI</span>
+                                </label>
+                                <input type="range" min="72" max="600" value="300" class="slider" id="dpiSlider" step="1">
+                                <div class="slider-marks">
+                                    <span>72</span>
+                                    <span>150</span>
+                                    <span>300</span>
+                                    <span>600</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-layer-group"></i> DPI Presets</span>
+                                </label>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline btn-sm" data-dpi="72">Web (72)</button>
+                                    <button class="btn btn-outline btn-sm" data-dpi="150">Home (150)</button>
+                                    <button class="btn btn-outline btn-sm" data-dpi="300">Photo (300)</button>
+                                    <button class="btn btn-outline btn-sm" data-dpi="600">Pro (600)</button>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-star-half-alt"></i> Print Quality</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="printQuality">
+                                        <option value="draft">Draft (Fast)</option>
+                                        <option value="normal" selected>Normal</option>
+                                        <option value="high">High Quality</option>
+                                        <option value="photo">Photo Quality</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-file-image"></i> Output Format</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="outputFormat">
+                                        <option value="jpg" selected>JPEG (.jpg)</option>
+                                        <option value="png">PNG (.png)</option>
+                                        <option value="webp">WebP (.webp)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group" id="jpgQualityGroup">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-compress"></i> JPEG Quality</span>
+                                    <span class="setting-value" id="jpgQualityValue">90%</span>
+                                </label>
+                                <input type="range" min="1" max="100" value="90" class="slider" id="jpgQualitySlider">
+                                <div class="slider-marks">
+                                    <span>Low</span>
+                                    <span>Medium</span>
+                                    <span>High</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-palette"></i> Color Mode</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="colorMode">
+                                        <option value="color" selected>Full Color (RGB)</option>
+                                        <option value="grayscale">Grayscale</option>
+                                        <option value="bw">Black & White</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab: Adjustments -->
+                    <div class="tab-content" id="tab-adjustments">
+                        <div class="settings-grid">
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-sun"></i> Brightness</span>
+                                    <span class="setting-value" id="brightnessValue">0</span>
+                                </label>
+                                <input type="range" min="-100" max="100" value="0" class="slider" id="brightnessSlider">
+                                <div class="slider-marks">
+                                    <span>-100</span>
+                                    <span>0</span>
+                                    <span>+100</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-adjust"></i> Contrast</span>
+                                    <span class="setting-value" id="contrastValue">0</span>
+                                </label>
+                                <input type="range" min="-100" max="100" value="0" class="slider" id="contrastSlider">
+                                <div class="slider-marks">
+                                    <span>-100</span>
+                                    <span>0</span>
+                                    <span>+100</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-tint"></i> Saturation</span>
+                                    <span class="setting-value" id="saturationValue">0</span>
+                                </label>
+                                <input type="range" min="-100" max="100" value="0" class="slider" id="saturationSlider">
+                                <div class="slider-marks">
+                                    <span>-100</span>
+                                    <span>0</span>
+                                    <span>+100</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-star"></i> Sharpness</span>
+                                    <span class="setting-value" id="sharpnessValue">0</span>
+                                </label>
+                                <input type="range" min="0" max="100" value="0" class="slider" id="sharpnessSlider">
+                                <div class="slider-marks">
+                                    <span>0</span>
+                                    <span>50</span>
+                                    <span>100</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-circle-notch"></i> Hue Rotation</span>
+                                    <span class="setting-value" id="hueValue">0°</span>
+                                </label>
+                                <input type="range" min="0" max="360" value="0" class="slider" id="hueSlider">
+                                <div class="slider-marks">
+                                    <span>0°</span>
+                                    <span>180°</span>
+                                    <span>360°</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-magic"></i> Quick Actions</span>
+                                </label>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline btn-sm" id="autoEnhanceBtn">
+                                        <i class="fas fa-wand-magic-sparkles"></i>
+                                        Auto Enhance
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" id="resetAdjustmentsBtn">
+                                        <i class="fas fa-undo"></i>
+                                        Reset All
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab: Effects -->
+                    <div class="tab-content" id="tab-effects">
+                        <div class="settings-grid">
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-filter"></i> Filters</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="filterSelect">
+                                        <option value="none" selected>None</option>
+                                        <option value="sepia">Sepia</option>
+                                        <option value="vintage">Vintage</option>
+                                        <option value="cool">Cool Tone</option>
+                                        <option value="warm">Warm Tone</option>
+                                        <option value="high-contrast">High Contrast</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-border-style"></i> Border</span>
+                                </label>
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="borderToggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <span>Enable Border</span>
+                                </div>
+                                <div id="borderOptions" style="display: none;">
+                                    <label style="display: block; margin-bottom: 8px; font-size: 0.875rem;">Width (px)</label>
+                                    <input type="number" id="borderWidth" value="10" min="1" max="100" style="width: 100%; padding: 8px; border: 2px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 12px;">
+                                    
+                                    <label style="display: block; margin-bottom: 8px; font-size: 0.875rem;">Color</label>
+                                    <input type="color" id="borderColor" value="#ffffff" style="width: 100%; height: 40px; border: 2px solid var(--border-color); border-radius: var(--radius-md);">
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-copyright"></i> Watermark</span>
+                                </label>
+                                <input type="text" id="watermarkText" placeholder="Enter watermark text" style="width: 100%; padding: 10px 12px; border: 2px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 12px;">
+                                
+                                <label style="display: block; margin-bottom: 8px; font-size: 0.875rem;">Position</label>
+                                <div class="select-wrapper">
+                                    <select id="watermarkPosition">
+                                        <option value="bottom-right">Bottom Right</option>
+                                        <option value="bottom-left">Bottom Left</option>
+                                        <option value="top-right">Top Right</option>
+                                        <option value="top-left">Top Left</option>
+                                        <option value="center">Center</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-expand"></i> Margins</span>
+                                </label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                    <input type="number" id="marginTop" placeholder="Top" value="0" min="0" style="padding: 8px; border: 2px solid var(--border-color); border-radius: var(--radius-md);">
+                                    <input type="number" id="marginRight" placeholder="Right" value="0" min="0" style="padding: 8px; border: 2px solid var(--border-color); border-radius: var(--radius-md);">
+                                    <input type="number" id="marginBottom" placeholder="Bottom" value="0" min="0" style="padding: 8px; border: 2px solid var(--border-color); border-radius: var(--radius-md);">
+                                    <input type="number" id="marginLeft" placeholder="Left" value="0" min="0" style="padding: 8px; border: 2px solid var(--border-color); border-radius: var(--radius-md);">
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-fill-drip"></i> Margin Background</span>
+                                </label>
+                                <input type="color" id="marginBgColor" value="#ffffff" style="width: 100%; height: 40px; border: 2px solid var(--border-color); border-radius: var(--radius-md);">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab: Advanced -->
+                    <div class="tab-content" id="tab-advanced">
+                        <div class="settings-grid">
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-eye"></i> Color Profile</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="colorProfile">
+                                        <option value="srgb" selected>sRGB (Standard)</option>
+                                        <option value="adobe-rgb">Adobe RGB</option>
+                                        <option value="cmyk">CMYK Simulation</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-crop-alt"></i> Aspect Ratio Lock</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="aspectRatioLock">
+                                        <option value="free" selected>Free</option>
+                                        <option value="1:1">1:1 (Square)</option>
+                                        <option value="4:3">4:3</option>
+                                        <option value="16:9">16:9</option>
+                                        <option value="3:2">3:2</option>
+                                        <option value="2:3">2:3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-save"></i> Preset Templates</span>
+                                </label>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline btn-sm" data-preset="photo">
+                                        <i class="fas fa-camera"></i>
+                                        Photo
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" data-preset="document">
+                                        <i class="fas fa-file-alt"></i>
+                                        Document
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" data-preset="poster">
+                                        <i class="fas fa-image"></i>
+                                        Poster
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label class="setting-label">
+                                    <span><i class="fas fa-info-circle"></i> Advanced Options</span>
+                                </label>
+                                <div style="display: flex; flex-direction: column; gap: 12px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="showMargins">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Show Print Margins</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="showBleed">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Show Bleed Area</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="showSafeZone">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span>Show Safe Zone</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- File Info -->
+                    <div class="file-info">
+                        <div class="info-item">
+                            <div class="info-label">Original Size</div>
+                            <div class="info-value" id="originalSize">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Current Dimensions</div>
+                            <div class="info-value" id="currentDimensions">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Print Size</div>
+                            <div class="info-value" id="printSize">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Estimated File Size</div>
+                            <div class="info-value" id="estimatedSize">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Quality</div>
+                            <div class="info-value" id="qualityIndicator">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-text fade-in">
+                <h2>Understanding Print Optimization and Why It Matters</h2>
+                
+                <p>Print optimization is the process of preparing digital images for physical printing to ensure the best possible output quality. Unlike displaying images on screens, printing requires specific considerations regarding resolution, dimensions, color mode, and file format. Our advanced Print Adjuster Tool helps you navigate these complexities effortlessly.</p>
+                
+                <h3>How DPI Affects Print Quality</h3>
+                
+                <p>DPI (Dots Per Inch) is the most critical factor in print quality. It determines how many individual ink dots your printer places within one inch of paper. Higher DPI means more dots, resulting in sharper, more detailed prints with smoother color transitions and better clarity.</p>
+                
+                <p>For web display, 72 DPI is standard because screens have lower resolution requirements. However, for printing, 300 DPI is the professional standard. At this resolution, individual dots become invisible to the human eye from normal viewing distance, creating crisp, professional-quality prints. For home printing, 150-200 DPI is often acceptable, while large-format prints for billboards or posters can use 100-150 DPI since they're viewed from greater distances.</p>
+                
+                <h3>Understanding Paper Sizes and Aspect Ratios</h3>
+                
+                <p>Choosing the right paper size is essential for optimal results. Standard sizes like A4 (210×297mm) and US Letter (8.5×11 inches) are ideal for documents, while photo sizes like 4×6, 5×7, and 8×10 inches are designed specifically for photographic prints. Each paper size has a specific aspect ratio, and understanding these ratios helps prevent unwanted cropping or stretching of your images.</p>
+                
+                <h3>Benefits of Using Our Print Adjuster Tool</h3>
+                
+                <p>Our tool eliminates the guesswork from print preparation. With real-time preview, you can see exactly how your image will look when printed. The advanced DPI calculator automatically determines optimal resolution based on your chosen paper size and print quality. Color mode conversion ensures your colors appear accurate on paper, while dimension controls let you scale images precisely without quality loss.</p>
+                
+                <h3>Common Printing Problems We Solve</h3>
+                
+                <p>Pixelation occurs when images have insufficient resolution for their print size. Our tool warns you before printing and can upscale images intelligently. Color shifting happens when RGB images are printed using CMYK inks – we simulate this conversion so you know exactly what to expect. Aspect ratio mismatches cause unwanted cropping or distortion, but our maintain aspect ratio feature prevents this automatically.</p>
+                
+                <h3>Professional Printing Tips</h3>
+                
+                <p>Always work with the highest quality source image available. Use 300 DPI for photos and important documents. Consider the viewing distance – larger prints viewed from farther away can use lower DPI. Test print a small section first to verify colors and quality. Use PNG for images with text or sharp edges, and JPEG with high quality settings (90%+) for photographs.</p>
+                
+                <h3>Color Accuracy for Prints</h3>
+                
+                <p>Screens emit light (RGB), while prints reflect light (CMYK). This fundamental difference means colors often look different in print than on screen. Our tool includes color profile simulation to bridge this gap, helping you adjust brightness, saturation, and hue before printing. The sRGB color space is standard for most home printers, while Adobe RGB offers a wider color gamut for professional printing.</p>
+                
+                <h3>Resolution vs. File Size Balance</h3>
+                
+                <p>Higher resolution creates larger file sizes, which can slow down printing and consume more storage. Our intelligent compression balances quality and file size. For photos, JPEG with 85-95% quality offers the best balance. For graphics with text, PNG maintains perfect clarity without compression artifacts. WebP provides excellent compression for modern workflows.</p>
+                
+                <h3>When to Use Different DPI Settings</h3>
+                
+                <p>72 DPI is perfect for web and screen display. 150 DPI works well for casual home printing and draft documents. 300 DPI is the professional standard for photos, marketing materials, and important documents. 600 DPI is reserved for extremely fine detail work, professional photo printing, and when you need maximum quality regardless of file size.</p>
+                
+                <h3>Print Preparation Best Practices</h3>
+                
+                <p>Start with high-resolution source images whenever possible. Use our crop tool to remove unnecessary elements and focus on your subject. Apply subtle sharpening to enhance details without creating artifacts. Adjust brightness and contrast to compensate for paper brightness. Preview your adjustments in real-time before processing. Save your settings as presets for consistent results across multiple images. Always keep your original files unchanged and work with copies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Why Choose PrintPerfect?</h2>
+                <p>Our comprehensive features ensure your prints look exactly as intended</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Advanced DPI Optimization</h3>
+                    <p>Intelligent DPI calculation based on paper size and print quality requirements. Our algorithm ensures optimal resolution without unnecessary file size bloat, giving you perfect prints every time.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Real-Time Preview</h3>
+                    <p>See exactly how your image will look when printed with our advanced preview system. Zoom, pan, and inspect every detail before committing to print, saving paper and ink.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Batch Processing</h3>
+                    <p>Process multiple images simultaneously with consistent settings. Perfect for photographers and businesses needing to prepare multiple images for printing efficiently.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Multiple Format Support</h3>
+                    <p>Work with JPG, PNG, TIFF, BMP, WebP, and AVIF formats. Export in your preferred format with customizable quality settings for optimal results.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Color Correction</h3>
+                    <p>Adjust brightness, contrast, saturation, and apply filters to ensure colors print accurately. Our CMYK simulation shows how RGB colors will appear in print.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Privacy-First Processing</h3>
+                    <p>All processing happens in your browser – your images never leave your device. No server uploads, no cloud storage, complete privacy and security for your files.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section>
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about print optimization and our tool</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What is DPI and why does it matter for printing?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>DPI stands for "Dots Per Inch" and refers to the number of individual ink dots a printer can place within one linear inch. Higher DPI means more dots, resulting in sharper, more detailed prints with smoother color transitions. For professional printing, 300 DPI is the standard because at this resolution, individual dots become invisible to the human eye from normal viewing distance. Lower DPI (like 72 DPI used for web) will appear pixelated and blurry when printed, while unnecessarily high DPI creates massive file sizes without visible quality improvement.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What's the difference between 72 DPI and 300 DPI?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>72 DPI is the standard resolution for web images and screen display because monitors have lower resolution requirements. When you print a 72 DPI image at its original dimensions, it will appear blurry and pixelated because there aren't enough dots per inch to create smooth details. 300 DPI contains 4.17 times more information per inch (300/72), providing the detail density needed for crisp, professional prints. A 4×6 inch photo at 72 DPI is only 432×288 pixels, while the same photo at 300 DPI is 1800×1200 pixels – that's 6.5 times more total pixels for superior quality.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>How do I choose the right paper size for my image?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Consider your image's aspect ratio and intended use. Standard photo sizes (4×6, 5×7, 8×10) have specific aspect ratios that may require cropping square or wide images. A4 and US Letter are ideal for documents and general printing. For photos, measure your frame first if you're framing the print. Our tool automatically calculates the best fit and warns you if significant cropping will occur. Use the "Maintain Aspect Ratio" option to prevent distortion, and enable "Scale to Fit" to automatically adjust your image to the selected paper size without cropping.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What DPI should I use for photo printing?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For photo printing, use 300 DPI for standard sizes (4×6 to 8×10 inches) to ensure professional quality with sharp details. For larger prints (11×14 inches and up), 200-250 DPI is acceptable because they're typically viewed from greater distances. Very large prints like posters (24×36 inches+) can use 150-200 DPI. For professional gallery-quality prints or images that will be closely examined, stick with 300 DPI. Our tool automatically recommends optimal DPI based on your chosen print size and displays a quality indicator to help you make the best decision.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Can I print web images at high quality?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Web images are typically 72 DPI and optimized for screen display, making them unsuitable for high-quality printing at large sizes. However, you have options: print them at smaller sizes where 72 DPI is sufficient (about 2×3 inches), use our upscaling feature to intelligently increase resolution (though this cannot add detail that wasn't there originally), or accept lower quality for casual prints. Our tool will show a quality warning if a web image won't print well at your chosen size. For best results, always start with the highest resolution image available – never download images from websites if you have access to the original high-resolution file.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What's the best format for printing: JPG, PNG, or TIFF?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Each format has specific advantages: JPEG is ideal for photographs with continuous tones and gradients. Use quality settings of 90%+ to minimize compression artifacts. PNG is perfect for images with text, sharp edges, or transparency. It uses lossless compression, maintaining perfect quality. TIFF is the professional standard for high-end printing, supporting multiple layers and color profiles, but creates very large files. For most home printing, JPEG at 90-95% quality provides the best balance of quality and file size. PNG is better for graphics, logos, and text-heavy images. Use TIFF only for professional printing services or when archiving master files.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>How does this tool improve print quality?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our tool improves print quality through multiple advanced features: DPI optimization ensures your image has sufficient resolution for your chosen print size, preventing pixelation. Color mode conversion (RGB to CMYK simulation) helps you see how colors will actually appear in print. Brightness and contrast adjustments compensate for paper brightness and ink absorption. Sharpening enhances details without creating artifacts. Our intelligent cropping maintains aspect ratios to prevent distortion. Real-time preview shows exactly what to expect, eliminating costly reprints. The quality indicator warns you before problems occur, and our batch processing ensures consistency across multiple images.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What is the optimal resolution for different print sizes?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Here are optimal resolutions for common print sizes: 4×6 inches: 1200×1800 pixels (300 DPI) or 800×1200 pixels (200 DPI minimum). 5×7 inches: 1500×2100 pixels (300 DPI) or 1000×1400 pixels (200 DPI minimum). 8×10 inches: 2400×3000 pixels (300 DPI) or 1600×2000 pixels (200 DPI minimum). 11×14 inches: 2640×3360 pixels (240 DPI) or 2200×2800 pixels (200 DPI minimum). 16×20 inches: 3840×4800 pixels (240 DPI) or 3200×4000 pixels (200 DPI minimum). For posters 24×36 inches: 4320×6480 pixels (180 DPI) or 3600×5400 pixels (150 DPI minimum). Our tool automatically calculates these values based on your selections.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Should I use RGB or CMYK color mode?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>RGB (Red, Green, Blue) is used for screen display, while CMYK (Cyan, Magenta, Yellow, Black) is used by printers. Most home and office printers actually work in RGB and convert to CMYK internally, so you should keep images in RGB for these printers. However, professional printing services often prefer CMYK files. The key difference is that RGB has a wider color gamut – some bright colors visible on screen cannot be reproduced in print. Our CMYK simulation shows how your RGB colors will look when printed, allowing you to adjust saturation and brightness accordingly. For most users, staying in RGB and using our color preview is the best approach.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Can I adjust multiple images at once?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Our batch processing feature allows you to upload multiple images and apply the same settings to all of them simultaneously. This is perfect for photographers processing event photos, businesses preparing product images, or anyone needing consistent results across multiple prints. Simply select multiple files when uploading, configure your desired settings (DPI, paper size, color adjustments, filters), and process all images at once. You can then download them individually or as a ZIP file. This saves significant time compared to processing each image separately and ensures consistency across your entire photo set.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>How do I prevent pixelation in prints?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pixelation occurs when an image doesn't have enough resolution for its print size. To prevent it: Always start with the highest resolution image available – never use thumbnails or web-sized images. Check the quality indicator in our tool before printing – it will warn you if resolution is insufficient. Use 300 DPI for photos smaller than 8×10 inches. For larger prints, 200 DPI minimum. Don't enlarge small images to large print sizes – a 500×500 pixel image will look pixelated at 8×10 inches. Our tool's intelligent upscaling can help, but it cannot add detail that wasn't in the original. When in doubt, print smaller or find a higher resolution source image.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What's the difference between portrait and landscape orientation?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Portrait orientation means the image is taller than it is wide (vertical), like a standing portrait photo. Landscape orientation means the image is wider than it is tall (horizontal), like a landscape photograph. The orientation should match your image's natural composition – don't rotate portrait photos to landscape just to fit a paper size, as this can create awkward framing. Our tool automatically detects your image's orientation and suggests the best paper orientation. You can manually switch between portrait and landscape using the orientation toggle. For photos that could work either way, consider which orientation better showcases your subject and complements your frame or display location.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PrintPerfect</h3>
+                    <p>Professional online tools for perfect prints every time. Optimize your images with our advanced adjustment features for high-quality printing results.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#features">How It Works</a></li>
+                        <li><a href="#tool">Print Adjuster Tool</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">Print Guide</a></li>
+                        <li><a href="#">Supported Formats</a></li>
+                        <li><a href="#">Best Practices</a></li>
+                        <li><a href="#">DPI Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 PrintPerfect. All rights reserved.</p>
+                <a href="#header" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                    Back to Top
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Print Preview Modal -->
+    <div class="modal" id="printModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-print"></i> Print Preview</h3>
+                <span class="close-modal" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div style="background-color: var(--bg-secondary); padding: var(--spacing-lg); border-radius: var(--radius-md); margin-bottom: var(--spacing-lg);">
+                    <canvas id="printCanvas" style="max-width: 100%; display: block; margin: 0 auto; box-shadow: var(--shadow-lg);"></canvas>
+                </div>
+                
+                <div class="file-info">
+                    <div class="info-item">
+                        <div class="info-label">Paper Size</div>
+                        <div class="info-value" id="printPaperSize">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Resolution</div>
+                        <div class="info-value" id="printResolution">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Dimensions</div>
+                        <div class="info-value" id="printDimensions">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Orientation</div>
+                        <div class="info-value" id="printOrientation">-</div>
+                    </div>
+                </div>
+                
+                <div class="btn-group" style="justify-content: center; margin-top: var(--spacing-lg);">
+                    <button class="btn btn-accent" id="startPrintBtn">
+                        <i class="fas fa-print"></i>
+                        Print Now
+                    </button>
+                    <button class="btn btn-outline" id="closePrintBtn">
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/print-adjuster.js"></script>
+</body>
+</html>

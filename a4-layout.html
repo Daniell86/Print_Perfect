@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arrange multiple images on A4 size canvas for printing">
+    <title>A4 Multi-Image Layout | PrintPerfect</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .a4-layout-container {
+            display: grid;
+            grid-template-columns: 250px 1fr 280px;
+            gap: 24px;
+            margin-top: 32px;
+        }
+        
+        .a4-sidebar {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            height: fit-content;
+        }
+        
+        .a4-canvas-wrapper {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 800px;
+        }
+        
+        #a4Canvas {
+            box-shadow: var(--shadow-xl);
+            cursor: default;
+            background: white;
+            display: block;
+        }
+        
+        .upload-section {
+            margin-bottom: 24px;
+        }
+        
+        .upload-section h3 {
+            font-size: 1.125rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .upload-btn-large {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: 2px dashed transparent;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-base);
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .upload-btn-large:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .upload-btn-large i {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .control-section {
+            margin-bottom: 24px;
+        }
+        
+        .control-section h3 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .control-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .btn-icon {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-base);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+        }
+        
+        .btn-icon:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .info-section {
+            background: white;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+        }
+        
+        .info-section h3 {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        
+        .info-section p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .image-list-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .image-list-item {
+            background: white;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition-base);
+            border: 2px solid transparent;
+        }
+        
+        .image-list-item:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .image-list-item.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .image-list-info {
+            flex: 1;
+        }
+        
+        .image-list-name {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .image-list-size {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+        
+        .image-list-actions {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .image-list-actions .btn-icon {
+            padding: 6px 8px;
+            font-size: 0.75rem;
+        }
+        
+        .instructions {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary);
+            margin-bottom: 24px;
+        }
+        
+        .instructions h4 {
+            font-size: 0.9375rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .instructions ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        
+        @media (max-width: 1200px) {
+            .a4-layout-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .a4-sidebar {
+                order: 3;
+            }
+            
+            .a4-canvas-wrapper {
+                order: 1;
+            }
+            
+            .a4-properties {
+                order: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-print logo-icon"></i>
+                    <span>PrintPerfect</span>
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html">Home</a>
+                    <a href="a4-layout.html" class="active">A4 Layout</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-th-large"></i> A4 Multi-Image Layout</h1>
+            <p>Arrange multiple images on A4 size canvas - Perfect for Aadhaar cards, ID cards, and documents</p>
+        </div>
+    </section>
+
+    <!-- A4 Layout Tool -->
+    <section>
+        <div class="container">
+            <div class="instructions fade-in">
+                <h4><i class="fas fa-info-circle"></i> How to Use:</h4>
+                <ul>
+                    <li><strong>Upload:</strong> Click "Add Image" or drag & drop files</li>
+                    <li><strong>Move:</strong> Click and drag images to reposition</li>
+                    <li><strong>Resize:</strong> Drag corner/edge handles to resize</li>
+                    <li><strong>Arrange:</strong> Use layer controls to bring forward/send back</li>
+                    <li><strong>Print:</strong> Click "Print A4 Layout" for perfect A4 output</li>
+                </ul>
+            </div>
+            
+            <div class="a4-layout-container fade-in">
+                <!-- Left Sidebar - Upload & Controls -->
+                <div class="a4-sidebar">
+                    <div class="upload-section">
+                        <h3><i class="fas fa-upload"></i> Add Images</h3>
+                        <button class="upload-btn-large" id="addImageToCanvas">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Add Image to Canvas</span>
+                        </button>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;" multiple>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3><i class="fas fa-layer-group"></i> Layer Controls</h3>
+                        <div class="control-buttons">
+                            <button class="btn-icon" id="bringToFront">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>Bring to Front</span>
+                            </button>
+                            <button class="btn-icon" id="sendToBack">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>Send to Back</span>
+                            </button>
+                            <button class="btn-icon" id="deleteSelectedImage">
+                                <i class="fas fa-trash"></i>
+                                <span>Delete Selected</span>
+                            </button>
+                            <button class="btn-icon" id="clearAllImages" style="color: var(--error); border-color: var(--error);">
+                                <i class="fas fa-trash-alt"></i>
+                                <span>Clear All</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3><i class="fas fa-download"></i> Export</h3>
+                        <div class="control-buttons">
+                            <button class="btn-icon" id="downloadA4Layout" style="background: var(--success); color: white; border-color: var(--success);">
+                                <i class="fas fa-download"></i>
+                                <span>Download A4 (300 DPI)</span>
+                            </button>
+                            <button class="btn-icon" id="printA4Layout" style="background: var(--primary); color: white; border-color: var(--primary);">
+                                <i class="fas fa-print"></i>
+                                <span>Print A4 Layout</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Center - A4 Canvas -->
+                <div class="a4-canvas-wrapper">
+                    <canvas id="a4Canvas"></canvas>
+                </div>
+                
+                <!-- Right Sidebar - Info & Image List -->
+                <div class="a4-sidebar a4-properties">
+                    <div class="info-section">
+                        <h3>Canvas Info</h3>
+                        <p id="imageCount">0 images on canvas</p>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>Selected Image</h3>
+                        <p id="selectedImageInfo">No image selected</p>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3><i class="fas fa-images"></i> Images on Canvas</h3>
+                        <div class="image-list-container" id="imageListContainer">
+                            <p style="text-align: center; color: var(--text-light); padding: 20px;">No images on canvas</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 16px; border-radius: var(--radius-md); border-left: 4px solid var(--success); margin-top: 24px;">
+                        <h4 style="font-size: 0.875rem; color: var(--success); margin-bottom: 8px;">
+                            <i class="fas fa-check-circle"></i> Tips
+                        </h4>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li style="font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 4px;">Hold Shift while resizing to maintain aspect ratio</li>
+                            <li style="font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 4px;">Double-click an image to select it</li>
+                            <li style="font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 4px;">Use arrow keys to fine-tune position</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Perfect for Multiple Use Cases</h2>
+                <p>Ideal solution for arranging multiple images on A4 paper</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>ID Cards & Aadhaar</h3>
+                    <p>Arrange front and back of Aadhaar cards, PAN cards, or any ID documents on a single A4 sheet for easy printing.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h3>Passport Photos</h3>
+                    <p>Arrange multiple passport-size photos on A4 paper. Perfect for visa applications and official documents.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Document Sets</h3>
+                    <p>Combine multiple document pages or certificates on a single A4 sheet for organized printing and filing.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Photo Collage</h3>
+                    <p>Create beautiful photo collages with precise control over image placement and sizing on A4 paper.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certificates</h3>
+                    <p>Arrange multiple certificates or awards on A4 for printing, framing, or creating portfolio sheets.</p>
+                </div>
+                
+                <div class="content-card fade-in">
+                    <div class="content-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3>Exact A4 Output</h3>
+                    <p>Print exactly what you see. WYSIWYG (What You See Is What You Get) - Perfect A4 size output every time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PrintPerfect</h3>
+                    <p>Professional online tools for perfect prints every time. Optimize your images with our advanced adjustment features for high-quality printing results.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="a4-layout.html">A4 Layout Tool</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="#">Print Guide</a></li>
+                        <li><a href="#">Supported Formats</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 PrintPerfect. All rights reserved.</p>
+                <a href="#header" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                    Back to Top
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/a4-canvas-manager.js"></script>
+</body>
+</html>

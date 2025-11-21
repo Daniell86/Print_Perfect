@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with PrintPerfect. Contact us for support, feature requests, or general inquiries.">
+    <meta name="keywords" content="contact printperfect, support, help, feedback">
+    <title>Contact Us | PrintPerfect - Get Help & Support</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-print logo-icon"></i>
+                    <span>PrintPerfect</span>
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html" class="active">Contact Us</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We're here to help! Get in touch with our team</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section>
+        <div class="container">
+            <div class="page-content">
+                <div class="fade-in">
+                    <h2>Get in Touch</h2>
+                    <p>Welcome to PrintPerfect support! We're dedicated to providing you with the best possible experience and assistance. Whether you're experiencing technical difficulties, have suggestions for new features, need help optimizing your prints, or simply want to share feedback about your experience, we're here to listen and help.</p>
+                    
+                    <p>Our support team typically responds to inquiries within 24-48 hours during business days. For faster assistance with common issues, we recommend checking our comprehensive FAQ section first, where you'll find detailed answers to frequently asked questions about DPI, print quality, color modes, and troubleshooting common problems.</p>
+                </div>
+
+                <div class="fade-in">
+                    <h2>When to Contact Us</h2>
+                    <p><strong>Technical Support:</strong> If you're experiencing bugs, errors, or unexpected behavior while using our print adjuster tool, please contact us with details about the issue, including your browser version, operating system, and steps to reproduce the problem.</p>
+                    
+                    <p><strong>Feature Requests:</strong> We love hearing from users about features they'd like to see! If you have ideas for improving PrintPerfect, whether it's a new adjustment option, additional format support, or workflow enhancements, please share your suggestions.</p>
+                    
+                    <p><strong>Print Quality Issues:</strong> If your prints aren't turning out as expected, we can help you troubleshoot. Describe the issue (pixelation, color shifts, sizing problems, etc.) and include information about your source image, target paper size, and print settings.</p>
+                    
+                    <p><strong>General Inquiries:</strong> For questions about how to use specific features, best practices for different printing scenarios, or general print optimization advice, we're happy to provide guidance.</p>
+                    
+                    <p><strong>Business Inquiries:</strong> If you're interested in partnerships, integrations, or using PrintPerfect for commercial purposes, please reach out to discuss opportunities.</p>
+                </div>
+
+                <div class="fade-in">
+                    <h2>What to Include in Bug Reports</h2>
+                    <p>To help us resolve technical issues quickly, please include the following information when reporting bugs:</p>
+                    <ul>
+                        <li><strong>Browser and Version:</strong> Chrome 120, Firefox 121, Safari 17, etc.</li>
+                        <li><strong>Operating System:</strong> Windows 11, macOS Sonoma, iOS 17, etc.</li>
+                        <li><strong>Steps to Reproduce:</strong> Detailed list of actions that trigger the issue</li>
+                        <li><strong>Expected Behavior:</strong> What you expected to happen</li>
+                        <li><strong>Actual Behavior:</strong> What actually happened</li>
+                        <li><strong>Console Errors:</strong> Any error messages in browser console (F12)</li>
+                        <li><strong>File Information:</strong> Type, size, and resolution of images causing issues</li>
+                        <li><strong>Screenshots:</strong> Visual reference of the problem (if applicable)</li>
+                    </ul>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="fade-in" style="margin-top: 48px;">
+                    <h2>Contact Form</h2>
+                    
+                    <div class="form-success" id="formSuccess">
+                        <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                        Thank you for contacting us! We've received your message and will respond within 24-48 hours.
+                    </div>
+                    
+                    <form id="contactForm" style="max-width: 700px;">
+                        <div class="form-group">
+                            <label for="name" class="form-label required">Name</label>
+                            <input type="text" id="name" class="form-input" placeholder="Your full name" required>
+                            <div class="form-error">Name must be at least 2 characters</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label required">Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="your.email@example.com" required>
+                            <div class="form-error">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label required">Subject</label>
+                            <div class="select-wrapper">
+                                <select id="subject" class="form-input" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="feature">Feature Request</option>
+                                    <option value="quality">Print Quality Issue</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="bug">Bug Report</option>
+                                    <option value="business">Business Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-error">Please select a subject</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label required">Message</label>
+                            <textarea id="message" class="form-textarea" placeholder="Please provide as much detail as possible..." rows="8" required></textarea>
+                            <div class="form-error">Message must be at least 20 characters</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: start; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" id="privacy" required style="margin-top: 4px;">
+                                <span style="font-size: 0.875rem; color: var(--text-secondary);">
+                                    I agree to the <a href="privacy.html" style="color: var(--primary);">Privacy Policy</a> and understand that my information will only be used to respond to my inquiry.
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-accent btn-lg">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="fade-in" style="margin-top: 48px;">
+                    <h2>Other Ways to Reach Us</h2>
+                    
+                    <div class="content-grid" style="margin-top: 24px;">
+                        <div class="content-card">
+                            <div class="content-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
+                            <p>For detailed inquiries or issues requiring file attachments:</p>
+                            <p style="color: var(--primary); font-weight: 600;">support@printperfect.com</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <div class="content-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Response Time</h3>
+                            <p>We aim to respond to all inquiries within:</p>
+                            <p style="color: var(--primary); font-weight: 600;">24-48 Hours</p>
+                            <p style="font-size: 0.875rem; margin-top: 8px;">Monday - Friday, 9 AM - 6 PM EST</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <div class="content-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <h3>FAQ</h3>
+                            <p>Get instant answers to common questions:</p>
+                            <a href="index.html#faq" class="btn btn-outline btn-sm" style="margin-top: 12px;">
+                                <i class="fas fa-external-link-alt"></i>
+                                View FAQ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in" style="margin-top: 48px;">
+                    <h2>Follow Us</h2>
+                    <p>Stay updated with the latest features, tips, and announcements by following us on social media:</p>
+                    
+                    <div class="social-links" style="margin-top: 24px;">
+                        <a href="#" aria-label="Facebook" style="width: 50px; height: 50px; font-size: 1.25rem;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter" style="width: 50px; height: 50px; font-size: 1.25rem;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram" style="width: 50px; height: 50px; font-size: 1.25rem;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn" style="width: 50px; height: 50px; font-size: 1.25rem;">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PrintPerfect</h3>
+                    <p>Professional online tools for perfect prints every time. Optimize your images with our advanced adjustment features for high-quality printing results.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="index.html#features">How It Works</a></li>
+                        <li><a href="index.html#tool">Print Adjuster Tool</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="#">Print Guide</a></li>
+                        <li><a href="#">Supported Formats</a></li>
+                        <li><a href="#">Best Practices</a></li>
+                        <li><a href="#">DPI Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 PrintPerfect. All rights reserved.</p>
+                <a href="#header" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                    Back to Top
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
